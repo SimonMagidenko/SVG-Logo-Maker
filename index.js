@@ -1,4 +1,4 @@
-const inquirer = require('inquirer');
+const inquirer = ('inquirer');
 const fs = require("fs");
 const questions = require('./lib/questions.js');
 const selectShape = require('./lib/selectShape.js');
