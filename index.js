@@ -1,10 +1,25 @@
-const fs = require("fs")
-let SVG = require("./lib/svg")
+const inquirer = require('inquirer');
+const fs = require("fs");
+const questions = require('./lib/questions.js');
+const selectShape = require('./lib/selectShape.js');
+const LogoFileName = require("./examples/generatedLogo.svg");
 
+function createLogo(response) {
+    const svg = selectShape(response);
+    fs.writeFile(LogoFileName, svg, () => console.log('Generated Logo.svg')
+    )
+};
 
-let example = new SVG("triangle", "AND", "yellow", "black");
-fs.writeFile("shape.svg", example.markUp, function (err) {
-    if (err)
-        console.log(err)
+function init() {
 
-})
+    inquirer
+        .prompt(questions)
+        .then((response) => {
+            createLogo(response)
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+init()
