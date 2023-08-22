@@ -1,12 +1,12 @@
 const inquirer = require('inquirer');
 const fs = require("fs");
 const questions = require('./lib/questions.js');
-const selectShape = require('./lib/selectShape.js');
+const setShape = require("./lib/selectShape.js");
 const LogoFileName = require("./examples/generatedLogo.svg");
 
 
 function createLogo(response) {
-    const svg = selectShape(response);
+    const svg = setShape(response);
     fs.writeFile(LogoFileName, svg, () => console.log('Generated Logo.svg')
     )
 };
@@ -22,5 +22,6 @@ function init() {
             console.log(err);
         });
 }
+
 
 init()
